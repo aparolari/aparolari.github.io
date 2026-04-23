@@ -118,8 +118,14 @@
     .research-grid { display: grid; gap: 2rem; }
     .research-card {
       background: #fff; border: 1px solid var(--border);
-      border-left: 3px solid #999; padding: 1.6rem 1.8rem;
+      border-left: 3px solid #999;
+      display: grid; grid-template-columns: 200px 1fr; gap: 0;
     }
+    .research-card-img {
+      width: 200px; min-height: 200px; object-fit: cover;
+      align-self: stretch; display: block; flex-shrink: 0;
+    }
+    .research-card-body { padding: 1.6rem 1.8rem; }
     .research-card h3 {
       font-family: 'Libre Baskerville', Georgia, serif;
       font-size: 1.05rem; font-style: italic; color: #111; margin-bottom: 0.75rem;
@@ -128,6 +134,10 @@
     .support-tag {
       font-size: 0.8rem; color: #666; font-weight: 600;
       font-family: 'Source Sans 3', sans-serif; letter-spacing: 0.02em;
+    }
+    @media (max-width: 680px) {
+      .research-card { grid-template-columns: 1fr; }
+      .research-card-img { width: 100%; min-height: 180px; }
     }
     .rep-pubs { margin-top: 0.85rem; }
     .rep-pubs summary {
@@ -161,7 +171,7 @@
     .students-section h3 { font-family: 'Libre Baskerville', Georgia, serif; font-size: 1.2rem; color: #111; margin-bottom: 1.2rem; }
     .students-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(155px, 1fr)); gap: 1.1rem; margin-bottom: 2rem; }
     .student-card { text-align: center; padding: 1rem 0.7rem; border: 1px solid var(--border); background: var(--sand); }
-    .student-photo { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin: 0 auto 0.65rem; border: 1px solid var(--border); background: var(--border); }
+    .student-photo { width: 100%; height: 130px; border-radius: 0; object-fit: cover; margin: 0 auto 0.65rem; border: 1px solid var(--border); background: var(--border); display: block; }
     .student-name {
       font-weight: 600; font-size: 0.8rem; color: #111;
       text-transform: uppercase; letter-spacing: 0.05em;
@@ -286,6 +296,8 @@
     <div class="research-grid">
 
       <div class="research-card">
+        <img class="research-card-img" src="https://images.squarespace-cdn.com/content/v1/57bcae14d482e92729889751/1564694542319-TQC0XI44H4LJQH77UYM3/deployment.png" alt="Green roof at Engineering Hall, Marquette University" onerror="this.style.display='none'" />
+        <div class="research-card-body">
         <h3>Soil Biogeochemistry in Engineered Ecosystems</h3>
         <p>Nutrients like Nitrogen (N) and Phosphorus (P) are crucial to growing food and keeping lawns green. However, N and P pollution of surface waters is one of the costliest water quality issues in the United States. To address this problem, farms and cities use <em>engineered ecosystems</em> — called green infrastructure — designed to remove N, P, and other pollutants from stormwater runoff. We study the hydrologic controls on N and P cycling in these ecosystems to inform design practices for improved nutrient management.</p>
         <div class="support-tag">Support: Fund for Lake Michigan · Milwaukee Metropolitan Sewerage District · U.S. Army Corps of Engineers</div>
@@ -296,9 +308,12 @@
             <li>Horvath et al. (2022). Seasonal Hydroclimatic and Soil Biogeochemical Drivers of N and P Availability. <em>J. Sustainable Water Built Environ.</em> <a href="https://ascelibrary.org/doi/abs/10.1061/JSWBAY.0000962" target="_blank">doi:10.1061/JSWBAY.0000962</a></li>
           </ul>
         </details>
+        </div>
       </div>
 
       <div class="research-card">
+        <img class="research-card-img" src="https://images.squarespace-cdn.com/content/v1/57bcae14d482e92729889751/1580919652623-PP54CTR8RNDH7HBQK3GI/IMG_6174.JPG" alt="Downtown Milwaukee from Lakeshore State Park" onerror="this.style.display='none'" />
+        <div class="research-card-body">
         <h3>Watershed and Urban Hydrology</h3>
         <p>Urbanization alters watershed hydrology by reducing infiltration into soils and increasing stormwater runoff. Increased stormwater runoff leads to flooding, rapid pollutant transport to urban streams, and erosion — negative impacts that must be mitigated through smart design. We study urban landscapes and water systems from multiple perspectives, including the role of soil on runoff production, efficient monitoring and modeling strategies, and real-time control technologies to optimize system performance.</p>
         <div class="support-tag">Support: Water Equipment &amp; Policy Industry-University Cooperative Research Center · U.S. Army Corps of Engineers</div>
@@ -308,12 +323,15 @@
             <li>Zhang et al. (2023). Streamflow Prediction in Poorly Gauged Watersheds Through Data-Driven Sparse Sensing. <em>Water Resources Research</em>. <a href="https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2022WR034092" target="_blank">doi:10.1029/2022WR034092</a></li>
             <li>Zhang et al. (2023). Reconstruction of Sparse Stream Flow Through Compressed Sensing. <em>Geophysical Research Letters</em>. <a href="https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2022GL101177" target="_blank">doi:10.1029/2022GL101177</a></li>
             <li>Zhang et al. (2023). The Role of Inflow and Infiltration in Urban Water Balances. <em>Water Resources Research</em>. <a href="https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2022WR032529" target="_blank">doi:10.1029/2022WR032529</a></li>
-            <li>Sharior et al. (2019). Improved reliability of stormwater detention basin performance through real-time control. <em>J. Hydrology</em>. <a href="https://www.sciencedespace.com/science/article/pii/S0022169419302598" target="_blank">doi:10.1016/j.jhydrol.2019.03.012</a></li>
+            <li>Sharior et al. (2019). Improved reliability of stormwater detention basin performance through real-time control. <em>J. Hydrology</em>. <a href="https://www.sciencedirect.com/science/article/pii/S0022169419302598" target="_blank">doi:10.1016/j.jhydrol.2019.03.012</a></li>
           </ul>
         </details>
+        </div>
       </div>
 
       <div class="research-card">
+        <img class="research-card-img" src="https://images.squarespace-cdn.com/content/v1/57bcae14d482e92729889751/1564698324654-W090MQDTZ3CRLS2V849V/Stewardship_Excellence.jpg" alt="Ecohydrology field research" onerror="this.style.display='none'" />
+        <div class="research-card-body">
         <h3>Ecohydrology: Climate Variability and Ecosystem Structure</h3>
         <p>Climate, and its influence on soil water availability, is arguably the most important driver of the density and diversity of plants found in ecosystems. Interactions between plants and water play a central role in the energy, water, and carbon cycles. To improve quantitative models that forecast critical earth system functions such as water availability and agricultural productivity, we study how rainfall variability at daily, seasonal, and inter-annual scales impacts ecosystem structure and function. Key interests include grassland productivity and seasonally-dry tropical forest structure.</p>
         <details class="rep-pubs">
@@ -324,6 +342,7 @@
             <li>Schwantes et al. (2018). Accounting for landscape heterogeneity improves spatial predictions of tree vulnerability to drought. <em>New Phytologist</em>. <a href="https://nph.onlinelibrary.wiley.com/doi/abs/10.1111/nph.15274" target="_blank">doi:10.1111/nph.15274</a></li>
           </ul>
         </details>
+        </div>
       </div>
 
     </div>
