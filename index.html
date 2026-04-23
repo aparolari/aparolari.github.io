@@ -8,487 +8,139 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+3:wght@300;400;600&family=Source+Serif+4:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
   <style>
     :root {
-      --navy: #111111;
-      --teal: #333333;
-      --teal-light: #555555;
       --sand: #f4f4f4;
       --cream: #ffffff;
       --text: #1a1a1a;
       --muted: #888888;
       --border: #dddddd;
-      --accent: #444444;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Source Sans 3', sans-serif;
-      background: var(--cream);
-      color: var(--text);
-      font-size: 17px;
-      line-height: 1.7;
-    }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body { font-family: 'Source Sans 3', sans-serif; background: #fff; color: var(--text); font-size: 17px; line-height: 1.7; overflow-x: hidden; }
+    img { max-width: 100%; height: auto; display: block; }
 
     /* ── NAV ── */
     nav {
-      position: fixed; top: 0; left: 0; right: 0;
-      z-index: 100;
-      background: #fff;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      padding: 0 3rem;
-      height: 64px;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: #fff; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: flex-end;
+      padding: 0 2.5rem; height: 56px;
     }
 
-    .nav-links {
-      display: flex;
-      gap: 2.2rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: #333;
-      text-decoration: none;
-      font-size: 0.88rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      transition: color 0.2s;
-    }
-
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: #333; text-decoration: none; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; }
     .nav-links a:hover { color: #000; }
 
+    /* Hamburger */
+    .nav-toggle {
+      display: none; flex-direction: column; justify-content: center; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 6px;
+    }
+    .nav-toggle span { display: block; width: 24px; height: 2px; background: #333; border-radius: 2px; }
+
+    /* Mobile dropdown */
+    .nav-dropdown {
+      display: none; position: fixed; top: 56px; left: 0; right: 0;
+      background: #fff; border-bottom: 1px solid var(--border);
+      flex-direction: column; z-index: 99;
+    }
+    .nav-dropdown.open { display: flex; }
+    .nav-dropdown a { padding: 1rem 2rem; color: #333; text-decoration: none; font-size: 0.88rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; border-bottom: 1px solid var(--border); }
+    .nav-dropdown a:last-child { border-bottom: none; }
+    .nav-dropdown a:hover { background: #f4f4f4; }
+
+    @media (max-width: 680px) {
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+    }
+
     /* ── HERO ── */
-    #home {
-      margin-top: 64px;
-      min-height: 72vh;
-      background: #fff;
-      display: flex;
-      align-items: center;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .hero-inner {
-      position: relative;
-      max-width: 820px;
-      padding: 5rem 4rem;
-    }
-
-    .hero-label {
-      display: inline-block;
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 1.4rem;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 0.35rem;
-    }
-
-    .hero-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.4rem, 5vw, 4rem);
-      color: #111;
-      line-height: 1.18;
-      margin-bottom: 1.5rem;
-    }
-
-    .hero-desc {
-      color: #444;
-      font-size: 1.12rem;
-      max-width: 620px;
-      line-height: 1.75;
-      font-family: 'Source Serif 4', serif;
-    }
-
-    .hero-cta {
-      margin-top: 2.4rem;
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .btn-primary {
-      background: #111;
-      color: #fff;
-      padding: 0.75rem 1.8rem;
-      border-radius: 3px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.9rem;
-      letter-spacing: 0.05em;
-      transition: background 0.2s;
-    }
+    #home { margin-top: 56px; min-height: 70vh; background: #fff; display: flex; align-items: center; border-bottom: 1px solid var(--border); }
+    .hero-inner { max-width: 820px; padding: 4rem 2.5rem; }
+    .hero-label { display: inline-block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.2rem; border-bottom: 1px solid var(--border); padding-bottom: 0.3rem; }
+    .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 3.8rem); color: #111; line-height: 1.18; margin-bottom: 1.3rem; }
+    .hero-desc { color: #444; font-size: 1.08rem; max-width: 600px; line-height: 1.75; font-family: 'Source Serif 4', serif; }
+    .hero-cta { margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary { background: #111; color: #fff; padding: 0.7rem 1.6rem; border-radius: 3px; text-decoration: none; font-weight: 600; font-size: 0.88rem; letter-spacing: 0.05em; transition: background 0.2s; }
     .btn-primary:hover { background: #333; }
-
-    .btn-outline {
-      border: 1.5px solid #ccc;
-      color: #333;
-      padding: 0.75rem 1.8rem;
-      border-radius: 3px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.9rem;
-      letter-spacing: 0.05em;
-      transition: border-color 0.2s, color 0.2s;
-    }
+    .btn-outline { border: 1.5px solid #ccc; color: #333; padding: 0.7rem 1.6rem; border-radius: 3px; text-decoration: none; font-weight: 600; font-size: 0.88rem; letter-spacing: 0.05em; transition: border-color 0.2s, color 0.2s; }
     .btn-outline:hover { border-color: #111; color: #111; }
 
     /* ── SECTIONS ── */
-    section { padding: 5.5rem 0; }
-
-    .section-inner {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 0 2.5rem;
-    }
-
-    .section-header {
-      margin-bottom: 3rem;
-      display: flex;
-      align-items: baseline;
-      gap: 1.5rem;
-    }
-
-    .section-header h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.2rem;
-      color: var(--navy);
-    }
-
-    .section-line {
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
+    section { padding: 5rem 0; }
+    .section-inner { max-width: 960px; margin: 0 auto; padding: 0 2.5rem; }
+    .section-header { margin-bottom: 2.8rem; display: flex; align-items: baseline; gap: 1.5rem; }
+    .section-header h2 { font-family: 'Playfair Display', serif; font-size: 2rem; color: #111; white-space: nowrap; }
+    .section-line { flex: 1; height: 1px; background: var(--border); }
 
     /* ── RESEARCH ── */
     #research { background: var(--sand); }
-
-    .research-grid {
-      display: grid;
-      gap: 2.5rem;
-    }
-
-    .research-card {
-      background: var(--cream);
-      border: 1px solid var(--border);
-      border-left: 4px solid var(--teal);
-      padding: 2rem 2.2rem;
-      border-radius: 0 4px 4px 0;
-    }
-
-    .research-card h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.22rem;
-      color: var(--navy);
-      margin-bottom: 0.9rem;
-    }
-
-    .research-card p {
-      color: #444;
-      font-size: 0.97rem;
-      margin-bottom: 0.8rem;
-    }
-
-    .support-tag {
-      font-size: 0.82rem;
-      color: var(--teal);
-      font-weight: 600;
-      letter-spacing: 0.04em;
-    }
-
-    .rep-pubs {
-      margin-top: 1rem;
-    }
-
-    .rep-pubs summary {
-      cursor: pointer;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--muted);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      user-select: none;
-      margin-bottom: 0.6rem;
-    }
-
-    .rep-pubs ul {
-      padding-left: 1.2rem;
-      margin-top: 0.5rem;
-    }
-
-    .rep-pubs li {
-      font-size: 0.875rem;
-      color: #555;
-      margin-bottom: 0.5rem;
-      font-family: 'Source Serif 4', serif;
-      font-style: italic;
-    }
-
-    .rep-pubs li a {
-      color: var(--teal);
-      text-decoration: none;
-      font-style: normal;
-      font-size: 0.82rem;
-      font-family: 'Source Sans 3', sans-serif;
-    }
+    .research-grid { display: grid; gap: 2.2rem; }
+    .research-card { background: #fff; border: 1px solid var(--border); border-left: 3px solid #555; padding: 1.8rem 2rem; border-radius: 0 3px 3px 0; }
+    .research-card h3 { font-family: 'Playfair Display', serif; font-size: 1.18rem; color: #111; margin-bottom: 0.8rem; }
+    .research-card p { color: #444; font-size: 0.96rem; margin-bottom: 0.7rem; }
+    .support-tag { font-size: 0.81rem; color: #555; font-weight: 600; letter-spacing: 0.03em; }
+    .rep-pubs { margin-top: 0.9rem; }
+    .rep-pubs summary { cursor: pointer; font-size: 0.82rem; font-weight: 600; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; user-select: none; }
+    .rep-pubs ul { padding-left: 1.1rem; margin-top: 0.5rem; }
+    .rep-pubs li { font-size: 0.87rem; color: #555; margin-bottom: 0.45rem; font-family: 'Source Serif 4', serif; font-style: italic; }
+    .rep-pubs li a { color: #333; text-decoration: none; font-style: normal; font-family: 'Source Sans 3', sans-serif; font-size: 0.81rem; }
     .rep-pubs li a:hover { text-decoration: underline; }
 
     /* ── PEOPLE ── */
-    #people { background: var(--cream); }
-
-    .pi-block {
-      display: grid;
-      grid-template-columns: 200px 1fr;
-      gap: 2.5rem;
-      align-items: start;
-      background: var(--sand);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 2rem;
-      margin-bottom: 3rem;
-    }
-
-    .pi-photo {
-      width: 200px;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 4px;
-      border: 3px solid var(--border);
-      background: var(--border);
-    }
-
-    .pi-info h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      color: var(--navy);
-      margin-bottom: 0.3rem;
-    }
-
-    .pi-title {
-      font-size: 0.85rem;
-      color: var(--teal);
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
-
-    .pi-info p {
-      font-size: 0.97rem;
-      color: #444;
-      line-height: 1.75;
-    }
-
-    .students-section h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.3rem;
-      color: var(--navy);
-      margin-bottom: 1.5rem;
-    }
-
-    .students-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 2.5rem;
-    }
-
-    .student-card {
-      text-align: center;
-      padding: 1.2rem 0.8rem;
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      background: var(--sand);
-    }
-
-    .student-photo {
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin: 0 auto 0.8rem;
-      display: block;
-      border: 2px solid var(--border);
-      background: var(--border);
-    }
-
-    .student-name {
-      font-weight: 600;
-      font-size: 0.88rem;
-      color: var(--navy);
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-
-    .student-degree {
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-top: 0.2rem;
-    }
-
-    .student-topic {
-      font-size: 0.78rem;
-      color: var(--teal);
-      font-style: italic;
-      margin-top: 0.3rem;
-    }
-
-    /* Alumni table */
-    .alumni-section { margin-top: 2rem; }
-
-    .alumni-section h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.3rem;
-      color: var(--navy);
-      margin-bottom: 1.2rem;
-    }
-
-    .alumni-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.9rem;
-    }
-
-    .alumni-table th {
-      text-align: left;
-      font-size: 0.78rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--muted);
-      padding: 0.5rem 1rem 0.5rem 0;
-      border-bottom: 2px solid var(--border);
-    }
-
-    .alumni-table td {
-      padding: 0.6rem 1rem 0.6rem 0;
-      border-bottom: 1px solid var(--border);
-      color: #444;
-    }
-
+    #people { background: #fff; }
+    .pi-block { display: grid; grid-template-columns: 190px 1fr; gap: 2.2rem; align-items: start; background: var(--sand); border: 1px solid var(--border); border-radius: 3px; padding: 1.8rem; margin-bottom: 2.8rem; }
+    .pi-photo { width: 190px; height: 190px; object-fit: cover; border-radius: 3px; border: 2px solid var(--border); background: var(--border); }
+    .pi-info h3 { font-family: 'Playfair Display', serif; font-size: 1.45rem; color: #111; margin-bottom: 0.25rem; }
+    .pi-title { font-size: 0.82rem; color: #555; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 0.9rem; }
+    .pi-info p { font-size: 0.95rem; color: #444; line-height: 1.75; }
+    .students-section h3 { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: #111; margin-bottom: 1.3rem; }
+    .students-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1.2rem; margin-bottom: 2.2rem; }
+    .student-card { text-align: center; padding: 1.1rem 0.7rem; border: 1px solid var(--border); border-radius: 3px; background: var(--sand); }
+    .student-photo { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin: 0 auto 0.7rem; border: 2px solid var(--border); background: var(--border); }
+    .student-name { font-weight: 600; font-size: 0.84rem; color: #111; text-transform: uppercase; letter-spacing: 0.04em; }
+    .student-degree { font-size: 0.78rem; color: var(--muted); margin-top: 0.2rem; }
+    .student-topic { font-size: 0.76rem; color: #555; font-style: italic; margin-top: 0.25rem; }
+    .alumni-section { margin-top: 1.8rem; }
+    .alumni-section h3 { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: #111; margin-bottom: 1rem; }
+    .alumni-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    .alumni-table th { text-align: left; font-size: 0.76rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 0.45rem 1rem 0.45rem 0; border-bottom: 2px solid var(--border); }
+    .alumni-table td { padding: 0.55rem 1rem 0.55rem 0; border-bottom: 1px solid var(--border); color: #444; }
     .alumni-table tr:last-child td { border-bottom: none; }
 
     /* ── TEACHING ── */
     #teaching { background: var(--sand); }
-
-    .course-list { display: grid; gap: 1rem; }
-
-    .course-item {
-      display: flex;
-      gap: 1.5rem;
-      align-items: baseline;
-      padding: 0.9rem 1.2rem;
-      background: var(--cream);
-      border: 1px solid var(--border);
-      border-radius: 3px;
-    }
-
-    .course-code {
-      font-family: 'Source Sans 3', monospace;
-      font-weight: 600;
-      font-size: 0.85rem;
-      color: var(--teal);
-      white-space: nowrap;
-      min-width: 160px;
-    }
-
-    .course-name { font-size: 0.97rem; color: #444; }
-
-    .teaching-term {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
-      color: var(--navy);
-      margin: 2rem 0 1rem;
-      font-style: italic;
-    }
+    .course-list { display: grid; gap: 0.8rem; }
+    .course-item { display: flex; gap: 1.2rem; align-items: baseline; padding: 0.85rem 1.1rem; background: #fff; border: 1px solid var(--border); border-radius: 3px; }
+    .course-code { font-weight: 600; font-size: 0.83rem; color: #333; white-space: nowrap; min-width: 150px; }
+    .course-name { font-size: 0.95rem; color: #444; }
+    .teaching-term { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: #111; margin: 1.8rem 0 0.9rem; font-style: italic; }
 
     /* ── PUBLICATIONS ── */
-    #publications { background: var(--cream); }
-
-    .pub-list {
-      counter-reset: pub;
-      list-style: none;
-      display: grid;
-      gap: 1rem;
-    }
-
-    .pub-item {
-      counter-increment: pub;
-      display: flex;
-      gap: 1.2rem;
-      padding: 1rem 1.2rem;
-      background: var(--sand);
-      border: 1px solid var(--border);
-      border-radius: 3px;
-      font-size: 0.9rem;
-      font-family: 'Source Serif 4', serif;
-      color: #444;
-      line-height: 1.7;
-    }
-
-    .pub-item::before {
-      content: counter(pub) ".";
-      color: var(--teal);
-      font-weight: 700;
-      font-family: 'Source Sans 3', sans-serif;
-      font-size: 0.85rem;
-      min-width: 26px;
-      padding-top: 0.05em;
-    }
-
-    .pub-item a {
-      color: var(--teal);
-      text-decoration: none;
-      font-family: 'Source Sans 3', sans-serif;
-      font-style: normal;
-      font-size: 0.82rem;
-    }
+    #publications { background: #fff; }
+    .pub-list { list-style: none; display: grid; gap: 0.9rem; }
+    .pub-item { display: flex; gap: 1rem; padding: 0.9rem 1.1rem; background: var(--sand); border: 1px solid var(--border); border-radius: 3px; font-size: 0.88rem; font-family: 'Source Serif 4', serif; color: #444; line-height: 1.7; counter-increment: pub; word-break: break-word; }
+    .pub-item::before { content: counter(pub) "."; color: #555; font-weight: 700; font-family: 'Source Sans 3', sans-serif; font-size: 0.83rem; min-width: 24px; padding-top: 0.05em; flex-shrink: 0; }
+    .pub-list { counter-reset: pub; }
+    .pub-item a { color: #333; text-decoration: none; font-family: 'Source Sans 3', sans-serif; font-style: normal; font-size: 0.8rem; }
     .pub-item a:hover { text-decoration: underline; }
-
-    .google-scholar-link {
-      margin-bottom: 2rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: #111;
-      color: #fff;
-      padding: 0.65rem 1.4rem;
-      border-radius: 3px;
-      text-decoration: none;
-      font-size: 0.88rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      transition: background 0.2s;
-    }
+    .google-scholar-link { margin-bottom: 1.8rem; display: inline-flex; align-items: center; gap: 0.4rem; background: #111; color: #fff; padding: 0.6rem 1.3rem; border-radius: 3px; text-decoration: none; font-size: 0.86rem; font-weight: 600; letter-spacing: 0.04em; transition: background 0.2s; }
     .google-scholar-link:hover { background: #333; }
 
     /* ── FOOTER ── */
-    footer {
-      background: #f4f4f4;
-      border-top: 1px solid var(--border);
-      color: #888;
-      text-align: center;
-      padding: 2.5rem;
-      font-size: 0.85rem;
-    }
-
+    footer { background: var(--sand); border-top: 1px solid var(--border); color: #888; text-align: center; padding: 2.2rem; font-size: 0.84rem; }
     footer a { color: #333; text-decoration: none; }
 
-    /* ── RESPONSIVE ── */
+    /* ── MOBILE ── */
     @media (max-width: 680px) {
-      nav { padding: 0 1.2rem; }
-      .nav-links { gap: 1.2rem; }
-      .nav-links a { font-size: 0.78rem; }
-      .hero-inner { padding: 3rem 1.5rem; }
+      .hero-inner { padding: 2.5rem 1.2rem; }
       .section-inner { padding: 0 1.2rem; }
       .pi-block { grid-template-columns: 1fr; }
-      .pi-photo { width: 140px; height: 140px; }
+      .pi-photo { width: 120px; height: 120px; }
+      .course-item { flex-direction: column; gap: 0.15rem; }
+      .course-code { min-width: unset; }
+      .alumni-table { display: block; overflow-x: auto; }
     }
   </style>
 </head>
@@ -503,7 +155,26 @@
     <li><a href="#teaching">Teaching</a></li>
     <li><a href="#publications">Publications</a></li>
   </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE DROPDOWN -->
+<div class="nav-dropdown" id="navDropdown">
+  <a href="#home"         onclick="closeMenu()">Home</a>
+  <a href="#research"     onclick="closeMenu()">Research</a>
+  <a href="#people"       onclick="closeMenu()">People</a>
+  <a href="#teaching"     onclick="closeMenu()">Teaching</a>
+  <a href="#publications" onclick="closeMenu()">Publications</a>
+</div>
+
+<script>
+  var toggle   = document.getElementById('navToggle');
+  var dropdown = document.getElementById('navDropdown');
+  toggle.addEventListener('click', function() { dropdown.classList.toggle('open'); });
+  function closeMenu() { dropdown.classList.remove('open'); }
+</script>
 
 <!-- HERO -->
 <section id="home">
@@ -513,7 +184,7 @@
     <p class="hero-desc">Our research integrates experimental data, theory, and models to study interactions between hydrology and ecosystems. We apply this understanding to solve ecological engineering problems, such as the design of urban water systems to protect water quality.</p>
     <div class="hero-cta">
       <a href="#research" class="btn-primary">Our Research</a>
-      <a href="#people" class="btn-outline">Meet the Team</a>
+      <a href="#people"   class="btn-outline">Meet the Team</a>
     </div>
   </div>
 </section>
@@ -521,11 +192,7 @@
 <!-- RESEARCH -->
 <section id="research">
   <div class="section-inner">
-    <div class="section-header">
-      <h2>Research</h2>
-      <div class="section-line"></div>
-    </div>
-
+    <div class="section-header"><h2>Research</h2><div class="section-line"></div></div>
     <div class="research-grid">
 
       <div class="research-card">
@@ -576,23 +243,18 @@
 <!-- PEOPLE -->
 <section id="people">
   <div class="section-inner">
-    <div class="section-header">
-      <h2>People</h2>
-      <div class="section-line"></div>
-    </div>
+    <div class="section-header"><h2>People</h2><div class="section-line"></div></div>
 
-    <!-- PI -->
     <div class="pi-block">
       <img class="pi-photo" src="https://images.squarespace-cdn.com/content/v1/57bcae14d482e92729889751/1599615104898-LZFIVMU3QZAUPQYKYJPS/Anthony+Parolari+copy.jpg" alt="Anthony J. Parolari" onerror="this.style.display='none'" />
       <div class="pi-info">
         <h3>Anthony J. Parolari, PhD, PE</h3>
         <p class="pi-title">Principal Investigator · Associate Professor</p>
         <p>I am a hydrologist and civil engineer by training with research interests in the role of water in ecosystems, particularly engineered ecosystems like agriculture and green infrastructure. My research develops quantitative models that link hydrologic variability to ecosystem processes, including plant productivity and soil biogeochemistry. I also study the social-ecological feedbacks that drive human interaction with the water cycle. These models are used to advance theory and to interpret empirical data, which improves basic understanding of ecosystem dynamics that can be leveraged to solve engineering and control problems.</p>
-        <p style="margin-top:0.8rem;"><a href="mailto:anthony.parolari@marquette.edu" style="color:var(--teal);font-weight:600;">anthony.parolari@marquette.edu</a></p>
+        <p style="margin-top:0.8rem;"><a href="mailto:anthony.parolari@marquette.edu" style="color:#333;font-weight:600;">anthony.parolari@marquette.edu</a></p>
       </div>
     </div>
 
-    <!-- Current Students -->
     <div class="students-section">
       <h3>Current Students</h3>
       <div class="students-grid">
@@ -619,22 +281,16 @@
         </div>
       </div>
 
-      <p style="font-size:0.95rem;color:#555;padding:1rem 1.2rem;background:var(--sand);border:1px solid var(--border);border-radius:3px;border-left:4px solid var(--accent);">
-        <strong>We are looking for talented and motivated graduate students</strong> to join our team. Information regarding the Masters and PhD programs in Civil, Construction, and Environmental Engineering at Marquette can be found at the <a href="http://bulletin.marquette.edu/grad/programs/engineering/civil/" style="color:var(--teal);">graduate bulletin</a>. Please <a href="mailto:anthony.parolari@marquette.edu" style="color:var(--teal);">contact us</a> directly with questions or interest.
+      <p style="font-size:0.93rem;color:#555;padding:1rem 1.1rem;background:var(--sand);border:1px solid var(--border);border-radius:3px;border-left:3px solid #aaa;">
+        <strong>We are looking for talented and motivated graduate students</strong> to join our team. Information regarding the Masters and PhD programs in Civil, Construction, and Environmental Engineering at Marquette can be found at the <a href="http://bulletin.marquette.edu/grad/programs/engineering/civil/" style="color:#333;">graduate bulletin</a>. Please <a href="mailto:anthony.parolari@marquette.edu" style="color:#333;">contact us</a> directly with questions or interest.
       </p>
     </div>
 
-    <!-- Alumni -->
     <div class="alumni-section">
       <h3>Alumni</h3>
       <table class="alumni-table">
         <thead>
-          <tr>
-            <th>Name</th>
-            <th>Degree</th>
-            <th>Year</th>
-            <th>Placement</th>
-          </tr>
+          <tr><th>Name</th><th>Degree</th><th>Year</th><th>Placement</th></tr>
         </thead>
         <tbody>
           <tr><td>Kun Zhang</td><td>Postdoc</td><td>—</td><td>University of Minnesota Duluth</td></tr>
@@ -651,15 +307,11 @@
 <!-- TEACHING -->
 <section id="teaching">
   <div class="section-inner">
-    <div class="section-header">
-      <h2>Teaching</h2>
-      <div class="section-line"></div>
-    </div>
-
-    <p style="margin-bottom:1.5rem;color:#555;">I teach courses in engineering computing, hydraulic engineering, urban hydrology and stormwater management, environmental modeling, and ecohydrology.</p>
+    <div class="section-header"><h2>Teaching</h2><div class="section-line"></div></div>
+    <p style="margin-bottom:1.3rem;color:#555;font-size:0.96rem;">I teach courses in engineering computing, hydraulic engineering, urban hydrology and stormwater management, environmental modeling, and ecohydrology.</p>
 
     <p class="teaching-term">Fall 2023</p>
-    <div class="course-list" style="margin-bottom:1.5rem;">
+    <div class="course-list" style="margin-bottom:1.2rem;">
       <div class="course-item">
         <span class="course-code">CEEN 4230/5230</span>
         <span class="course-name">Urban Hydrology &amp; Stormwater Management</span>
@@ -667,7 +319,7 @@
     </div>
 
     <p class="teaching-term">Spring 2024</p>
-    <div class="course-list" style="margin-bottom:2rem;">
+    <div class="course-list" style="margin-bottom:1.8rem;">
       <div class="course-item">
         <span class="course-code">CEEN 1210</span>
         <span class="course-name">Introduction to Computing, Analysis, Design, and Communication</span>
@@ -676,30 +328,12 @@
 
     <p class="teaching-term">Previous Courses</p>
     <div class="course-list">
-      <div class="course-item">
-        <span class="course-code">CEEN 3210</span>
-        <span class="course-name">Hydraulic Engineering</span>
-      </div>
-      <div class="course-item">
-        <span class="course-code">CEEN 4560/5560</span>
-        <span class="course-name">Environmental Fate &amp; Transport</span>
-      </div>
-      <div class="course-item">
-        <span class="course-code">CEEN 6350</span>
-        <span class="course-name">Modeling in Water Resources Engineering</span>
-      </div>
-      <div class="course-item">
-        <span class="course-code">CEEN 6932</span>
-        <span class="course-name">Ecohydrology</span>
-      </div>
-      <div class="course-item">
-        <span class="course-code">—</span>
-        <span class="course-name">Optimal Environmental Sensing</span>
-      </div>
-      <div class="course-item">
-        <span class="course-code">—</span>
-        <span class="course-name">Duke Research Integration Voyage for Engineers</span>
-      </div>
+      <div class="course-item"><span class="course-code">CEEN 3210</span><span class="course-name">Hydraulic Engineering</span></div>
+      <div class="course-item"><span class="course-code">CEEN 4560/5560</span><span class="course-name">Environmental Fate &amp; Transport</span></div>
+      <div class="course-item"><span class="course-code">CEEN 6350</span><span class="course-name">Modeling in Water Resources Engineering</span></div>
+      <div class="course-item"><span class="course-code">CEEN 6932</span><span class="course-name">Ecohydrology</span></div>
+      <div class="course-item"><span class="course-code">—</span><span class="course-name">Optimal Environmental Sensing</span></div>
+      <div class="course-item"><span class="course-code">—</span><span class="course-name">Duke Research Integration Voyage for Engineers</span></div>
     </div>
   </div>
 </section>
@@ -707,15 +341,8 @@
 <!-- PUBLICATIONS -->
 <section id="publications">
   <div class="section-inner">
-    <div class="section-header">
-      <h2>Publications</h2>
-      <div class="section-line"></div>
-    </div>
-
-    <a class="google-scholar-link" href="https://scholar.google.com/citations?user=3nn7V1gAAAAJ&hl=en" target="_blank">
-      ↗ Full list on Google Scholar
-    </a>
-
+    <div class="section-header"><h2>Publications</h2><div class="section-line"></div></div>
+    <a class="google-scholar-link" href="https://scholar.google.com/citations?user=3nn7V1gAAAAJ&hl=en" target="_blank">↗ Full list on Google Scholar</a>
     <ol class="pub-list">
       <li class="pub-item">Zhang, K., Luhar, M., Brunner, M. I., &amp; Parolari, A. J. (2023). Streamflow Prediction in Poorly Gauged Watersheds in the United States Through Data-Driven Sparse Sensing. <em>Water Resources Research</em>, 59(4), e2022WR034092. <a href="https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2022WR034092" target="_blank">doi:10.1029/2022WR034092</a></li>
       <li class="pub-item">Zhang, K., Sebo, S., McDonald, W., Bhaskar, A., Shuster, W., Stewart, R. D., &amp; Parolari, A. J. (2023). The Role of Inflow and Infiltration (I/I) in Urban Water Balances and Streamflow Regimes. <em>Water Resources Research</em>, 59(4), e2022WR032529. <a href="https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2022WR032529" target="_blank">doi:10.1029/2022WR032529</a></li>
@@ -755,7 +382,7 @@
 <!-- FOOTER -->
 <footer>
   <p>Parolari Ecohydrology Lab · Department of Civil, Construction &amp; Environmental Engineering · Marquette University</p>
-  <p style="margin-top:0.5rem;"><a href="mailto:anthony.parolari@marquette.edu">anthony.parolari@marquette.edu</a></p>
+  <p style="margin-top:0.4rem;"><a href="mailto:anthony.parolari@marquette.edu">anthony.parolari@marquette.edu</a></p>
 </footer>
 
 </body>
