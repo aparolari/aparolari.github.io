@@ -119,11 +119,15 @@
     .research-card {
       background: #fff; border: 1px solid var(--border);
       border-left: 3px solid #999;
-      display: grid; grid-template-columns: 200px 1fr; gap: 0;
+      display: grid; grid-template-columns: 190px 1fr; gap: 0;
+      align-items: start;
     }
-    .research-card-img {
-      width: 200px; min-height: 200px; object-fit: cover;
-      align-self: stretch; display: block; flex-shrink: 0;
+    .research-card-media { display: flex; flex-direction: column; border-right: 1px solid var(--border); }
+    .research-card-img { width: 100%; height: 180px; object-fit: cover; display: block; }
+    .research-card-caption {
+      font-family: 'Source Sans 3', sans-serif; font-size: 0.74rem;
+      color: #888; padding: 0.5rem 0.7rem; line-height: 1.4; font-style: italic;
+      background: #fafafa; flex: 1;
     }
     .research-card-body { padding: 1.6rem 1.8rem; }
     .research-card h3 {
@@ -137,7 +141,8 @@
     }
     @media (max-width: 680px) {
       .research-card { grid-template-columns: 1fr; }
-      .research-card-img { width: 100%; min-height: 180px; }
+      .research-card-media { border-right: none; border-bottom: 1px solid var(--border); }
+      .research-card-img { height: 200px; width: 100%; }
     }
     .rep-pubs { margin-top: 0.85rem; }
     .rep-pubs summary {
@@ -296,7 +301,10 @@
     <div class="research-grid">
 
       <div class="research-card">
-        <img class="research-card-img" src="https://images.squarespace-cdn.com/content/v1/57bcae14d482e92729889751/1564694542319-TQC0XI44H4LJQH77UYM3/deployment.png" alt="Green roof at Engineering Hall, Marquette University" onerror="this.style.display='none'" />
+        <div class="research-card-media">
+          <img class="research-card-img" src="https://images.squarespace-cdn.com/content/v1/57bcae14d482e92729889751/1564694542319-TQC0XI44H4LJQH77UYM3/deployment.png" alt="Green roof at Engineering Hall, Marquette University" onerror="this.parentElement.style.display='none'" />
+          <p class="research-card-caption">Green roof at Engineering Hall, Marquette University</p>
+        </div>
         <div class="research-card-body">
         <h3>Soil Biogeochemistry in Engineered Ecosystems</h3>
         <p>Nutrients like Nitrogen (N) and Phosphorus (P) are crucial to growing food and keeping lawns green. However, N and P pollution of surface waters is one of the costliest water quality issues in the United States. To address this problem, farms and cities use <em>engineered ecosystems</em> — called green infrastructure — designed to remove N, P, and other pollutants from stormwater runoff. We study the hydrologic controls on N and P cycling in these ecosystems to inform design practices for improved nutrient management.</p>
@@ -312,7 +320,10 @@
       </div>
 
       <div class="research-card">
-        <img class="research-card-img" src="https://images.squarespace-cdn.com/content/v1/57bcae14d482e92729889751/1580919652623-PP54CTR8RNDH7HBQK3GI/IMG_6174.JPG" alt="Downtown Milwaukee from Lakeshore State Park" onerror="this.style.display='none'" />
+        <div class="research-card-media">
+          <img class="research-card-img" src="https://images.squarespace-cdn.com/content/v1/57bcae14d482e92729889751/1580919652623-PP54CTR8RNDH7HBQK3GI/IMG_6174.JPG" alt="Downtown Milwaukee from Lakeshore State Park" onerror="this.parentElement.style.display='none'" />
+          <p class="research-card-caption">Downtown Milwaukee from Lakeshore State Park</p>
+        </div>
         <div class="research-card-body">
         <h3>Watershed and Urban Hydrology</h3>
         <p>Urbanization alters watershed hydrology by reducing infiltration into soils and increasing stormwater runoff. Increased stormwater runoff leads to flooding, rapid pollutant transport to urban streams, and erosion — negative impacts that must be mitigated through smart design. We study urban landscapes and water systems from multiple perspectives, including the role of soil on runoff production, efficient monitoring and modeling strategies, and real-time control technologies to optimize system performance.</p>
@@ -330,7 +341,10 @@
       </div>
 
       <div class="research-card">
-        <img class="research-card-img" src="https://images.squarespace-cdn.com/content/v1/57bcae14d482e92729889751/1564698324654-W090MQDTZ3CRLS2V849V/Stewardship_Excellence.jpg" alt="Ecohydrology field research" onerror="this.style.display='none'" />
+        <div class="research-card-media">
+          <img class="research-card-img" src="https://images.squarespace-cdn.com/content/v1/57bcae14d482e92729889751/1564698324654-W090MQDTZ3CRLS2V849V/Stewardship_Excellence.jpg" alt="Stewardship Excellence Award, Milwaukee Metropolitan Sewerage District" onerror="this.parentElement.style.display='none'" />
+          <p class="research-card-caption">Stewardship Excellence Award, Milwaukee Metropolitan Sewerage District</p>
+        </div>
         <div class="research-card-body">
         <h3>Ecohydrology: Climate Variability and Ecosystem Structure</h3>
         <p>Climate, and its influence on soil water availability, is arguably the most important driver of the density and diversity of plants found in ecosystems. Interactions between plants and water play a central role in the energy, water, and carbon cycles. To improve quantitative models that forecast critical earth system functions such as water availability and agricultural productivity, we study how rainfall variability at daily, seasonal, and inter-annual scales impacts ecosystem structure and function. Key interests include grassland productivity and seasonally-dry tropical forest structure.</p>
