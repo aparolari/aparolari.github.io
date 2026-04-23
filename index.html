@@ -199,18 +199,9 @@
 
     /* ── PUBLICATIONS ── */
     #publications { background: #fff; }
-    .pub-list { list-style: none; display: grid; gap: 0.8rem; counter-reset: pub; }
-    .pub-item {
-      counter-increment: pub; display: flex; gap: 0.9rem;
-      padding: 0.85rem 1rem; background: var(--sand); border: 1px solid var(--border);
-      font-size: 0.86rem; color: #444; line-height: 1.72; word-break: break-word;
-    }
-    .pub-item::before {
-      content: counter(pub) "."; color: #666; font-weight: 700;
-      font-family: 'Source Sans 3', sans-serif; font-size: 0.8rem;
-      min-width: 22px; padding-top: 0.05em; flex-shrink: 0;
-    }
-    .pub-item a { color: #333; text-decoration: none; font-family: 'Source Sans 3', sans-serif; font-style: normal; font-size: 0.78rem; }
+    .pub-list { list-style: decimal; padding-left: 1.4rem; }
+    .pub-item { font-size: 0.92rem; color: #333; line-height: 1.75; margin-bottom: 0.75rem; word-break: break-word; }
+    .pub-item a { color: #333; text-decoration: none; }
     .pub-item a:hover { text-decoration: underline; }
     .google-scholar-link {
       margin-bottom: 1.6rem; display: inline-flex; align-items: center; gap: 0.4rem;
