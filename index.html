@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ecohydrology @ Marquette | Parolari Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+3:wght@300;400;600&family=Source+Serif+4:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #111111;
+      --teal: #333333;
+      --teal-light: #555555;
+      --sand: #f4f4f4;
+      --cream: #ffffff;
+      --text: #1a1a1a;
+      --muted: #888888;
+      --border: #dddddd;
+      --accent: #444444;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 0 3rem;
+      height: 64px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #333;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: #000; }
+
+    /* ── HERO ── */
+    #home {
+      margin-top: 64px;
+      min-height: 72vh;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-inner {
+      position: relative;
+      max-width: 820px;
+      padding: 5rem 4rem;
+    }
+
+    .hero-label {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.4rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.35rem;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      color: #111;
+      line-height: 1.18;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-desc {
+      color: #444;
+      font-size: 1.12rem;
+      max-width: 620px;
+      line-height: 1.75;
+      font-family: 'Source Serif 4', serif;
+    }
+
+    .hero-cta {
+      margin-top: 2.4rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: #111;
+      color: #fff;
+      padding: 0.75rem 1.8rem;
+      border-radius: 3px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover { background: #333; }
+
+    .btn-outline {
+      border: 1.5px solid #ccc;
+      color: #333;
+      padding: 0.75rem 1.8rem;
+      border-radius: 3px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-outline:hover { border-color: #111; color: #111; }
+
+    /* ── SECTIONS ── */
+    section { padding: 5.5rem 0; }
+
+    .section-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 2.5rem;
+    }
+
+    .section-header {
+      margin-bottom: 3rem;
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+    }
+
+    .section-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      color: var(--navy);
+    }
+
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── RESEARCH ── */
+    #research { background: var(--sand); }
+
+    .research-grid {
+      display: grid;
+      gap: 2.5rem;
+    }
+
+    .research-card {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--teal);
+      padding: 2rem 2.2rem;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .research-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.22rem;
+      color: var(--navy);
+      margin-bottom: 0.9rem;
+    }
+
+    .research-card p {
+      color: #444;
+      font-size: 0.97rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .support-tag {
+      font-size: 0.82rem;
+      color: var(--teal);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .rep-pubs {
+      margin-top: 1rem;
+    }
+
+    .rep-pubs summary {
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      user-select: none;
+      margin-bottom: 0.6rem;
+    }
+
+    .rep-pubs ul {
+      padding-left: 1.2rem;
+      margin-top: 0.5rem;
+    }
+
+    .rep-pubs li {
+      font-size: 0.875rem;
+      color: #555;
+      margin-bottom: 0.5rem;
+      font-family: 'Source Serif 4', serif;
+      font-style: italic;
+    }
+
+    .rep-pubs li a {
+      color: var(--teal);
+      text-decoration: none;
+      font-style: normal;
+      font-size: 0.82rem;
+      font-family: 'Source Sans 3', sans-serif;
+    }
+    .rep-pubs li a:hover { text-decoration: underline; }
+
+    /* ── PEOPLE ── */
+    #people { background: var(--cream); }
+
+    .pi-block {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 2.5rem;
+      align-items: start;
+      background: var(--sand);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .pi-photo {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 4px;
+      border: 3px solid var(--border);
+      background: var(--border);
+    }
+
+    .pi-info h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--navy);
+      margin-bottom: 0.3rem;
+    }
+
+    .pi-title {
+      font-size: 0.85rem;
+      color: var(--teal);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .pi-info p {
+      font-size: 0.97rem;
+      color: #444;
+      line-height: 1.75;
+    }
+
+    .students-section h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--navy);
+      margin-bottom: 1.5rem;
+    }
+
+    .students-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .student-card {
+      text-align: center;
+      padding: 1.2rem 0.8rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--sand);
+    }
+
+    .student-photo {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 0.8rem;
+      display: block;
+      border: 2px solid var(--border);
+      background: var(--border);
+    }
+
+    .student-name {
+      font-weight: 600;
+      font-size: 0.88rem;
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .student-degree {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 0.2rem;
+    }
+
+    .student-topic {
+      font-size: 0.78rem;
+      color: var(--teal);
+      font-style: italic;
+      margin-top: 0.3rem;
+    }
+
+    /* Alumni table */
+    .alumni-section { margin-top: 2rem; }
+
+    .alumni-section h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--navy);
+      margin-bottom: 1.2rem;
+    }
+
+    .alumni-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+
+    .alumni-table th {
+      text-align: left;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 0.5rem 1rem 0.5rem 0;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .alumni-table td {
+      padding: 0.6rem 1rem 0.6rem 0;
+      border-bottom: 1px solid var(--border);
+      color: #444;
+    }
+
+    .alumni-table tr:last-child td { border-bottom: none; }
+
+    /* ── TEACHING ── */
+    #teaching { background: var(--sand); }
+
+    .course-list { display: grid; gap: 1rem; }
+
+    .course-item {
+      display: flex;
+      gap: 1.5rem;
+      align-items: baseline;
+      padding: 0.9rem 1.2rem;
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+    }
+
+    .course-code {
+      font-family: 'Source Sans 3', monospace;
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--teal);
+      white-space: nowrap;
+      min-width: 160px;
+    }
+
+    .course-name { font-size: 0.97rem; color: #444; }
+
+    .teaching-term {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--navy);
+      margin: 2rem 0 1rem;
+      font-style: italic;
+    }
+
+    /* ── PUBLICATIONS ── */
+    #publications { background: var(--cream); }
+
+    .pub-list {
+      counter-reset: pub;
+      list-style: none;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .pub-item {
+      counter-increment: pub;
+      display: flex;
+      gap: 1.2rem;
+      padding: 1rem 1.2rem;
+      background: var(--sand);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      font-size: 0.9rem;
+      font-family: 'Source Serif 4', serif;
+      color: #444;
+      line-height: 1.7;
+    }
+
+    .pub-item::before {
+      content: counter(pub) ".";
+      color: var(--teal);
+      font-weight: 700;
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 0.85rem;
+      min-width: 26px;
+      padding-top: 0.05em;
+    }
+
+    .pub-item a {
+      color: var(--teal);
+      text-decoration: none;
+      font-family: 'Source Sans 3', sans-serif;
+      font-style: normal;
+      font-size: 0.82rem;
+    }
+    .pub-item a:hover { text-decoration: underline; }
+
+    .google-scholar-link {
+      margin-bottom: 2rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #111;
+      color: #fff;
+      padding: 0.65rem 1.4rem;
+      border-radius: 3px;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      transition: background 0.2s;
+    }
+    .google-scholar-link:hover { background: #333; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #f4f4f4;
+      border-top: 1px solid var(--border);
+      color: #888;
+      text-align: center;
+      padding: 2.5rem;
+      font-size: 0.85rem;
+    }
+
+    footer a { color: #333; text-decoration: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 680px) {
+      nav { padding: 0 1.2rem; }
+      .nav-links { gap: 1.2rem; }
+      .nav-links a { font-size: 0.78rem; }
+      .hero-inner { padding: 3rem 1.5rem; }
+      .section-inner { padding: 0 1.2rem; }
+      .pi-block { grid-template-columns: 1fr; }
+      .pi-photo { width: 140px; height: 140px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#people">People</a></li>
+    <li><a href="#teaching">Teaching</a></li>
+    <li><a href="#publications">Publications</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-inner">
+    <span class="hero-label">Marquette University · Civil &amp; Environmental Engineering</span>
+    <h1 class="hero-title">Ecohydrology<br>@ Marquette</h1>
+    <p class="hero-desc">Our research integrates experimental data, theory, and models to study interactions between hydrology and ecosystems. We apply this understanding to solve ecological engineering problems, such as the design of urban water systems to protect water quality.</p>
+    <div class="hero-cta">
+      <a href="#research" class="btn-primary">Our Research</a>
+      <a href="#people" class="btn-outline">Meet the Team</a>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section id="research">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2>Research</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="research-grid">
+
+      <div class="research-card">
+        <h3>Soil Biogeochemistry in Engineered Ecosystems</h3>
+        <p>Nutrients like Nitrogen (N) and Phosphorus (P) are crucial to growing food and keeping lawns green. However, N and P pollution of surface waters is one of the costliest water quality issues in the United States. To address this problem, farms and cities use <em>engineered ecosystems</em> — called green infrastructure — designed to remove N, P, and other pollutants from stormwater runoff. We study the hydrologic controls on N and P cycling in these ecosystems to inform design practices for improved nutrient management.</p>
+        <div class="support-tag">Support: Fund for Lake Michigan · Milwaukee Metropolitan Sewerage District · U.S. Army Corps of Engineers</div>
+        <details class="rep-pubs">
+          <summary>Representative Publications</summary>
+          <ul>
+            <li>Horvath et al. (2023). Effects of Regional Climate and BMP Type on Stormwater Nutrient Concentrations. <em>Environ. Sci. &amp; Technology</em>. <a href="https://pubs.acs.org/doi/abs/10.1021/acs.est.2c05942" target="_blank">doi:10.1021/acs.est.2c05942</a></li>
+            <li>Horvath et al. (2022). Seasonal Hydroclimatic and Soil Biogeochemical Drivers of N and P Availability. <em>J. Sustainable Water Built Environ.</em> <a href="https://ascelibrary.org/doi/abs/10.1061/JSWBAY.0000962" target="_blank">doi:10.1061/JSWBAY.0000962</a></li>
+          </ul>
+        </details>
+      </div>
+
+      <div class="research-card">
+        <h3>Watershed and Urban Hydrology</h3>
+        <p>Urbanization alters watershed hydrology by reducing infiltration into soils and increasing stormwater runoff. Increased stormwater runoff leads to flooding, rapid pollutant transport to urban streams, and erosion — negative impacts that must be mitigated through smart design. We study urban landscapes and water systems from multiple perspectives, including the role of soil on runoff production, efficient monitoring and modeling strategies, and real-time control technologies to optimize system performance.</p>
+        <div class="support-tag">Support: Water Equipment &amp; Policy Industry-University Cooperative Research Center · U.S. Army Corps of Engineers</div>
+        <details class="rep-pubs">
+          <summary>Representative Publications</summary>
+          <ul>
+            <li>Zhang et al. (2023). Streamflow Prediction in Poorly Gauged Watersheds Through Data-Driven Sparse Sensing. <em>Water Resources Research</em>. <a href="https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2022WR034092" target="_blank">doi:10.1029/2022WR034092</a></li>
+            <li>Zhang et al. (2023). Reconstruction of Sparse Stream Flow Through Compressed Sensing. <em>Geophysical Research Letters</em>. <a href="https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2022GL101177" target="_blank">doi:10.1029/2022GL101177</a></li>
+            <li>Zhang et al. (2023). The Role of Inflow and Infiltration in Urban Water Balances. <em>Water Resources Research</em>. <a href="https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2022WR032529" target="_blank">doi:10.1029/2022WR032529</a></li>
+            <li>Sharior et al. (2019). Improved reliability of stormwater detention basin performance through real-time control. <em>J. Hydrology</em>. <a href="https://www.sciencedirect.com/science/article/pii/S0022169419302598" target="_blank">doi:10.1016/j.jhydrol.2019.03.012</a></li>
+          </ul>
+        </details>
+      </div>
+
+      <div class="research-card">
+        <h3>Ecohydrology: Climate Variability and Ecosystem Structure</h3>
+        <p>Climate, and its influence on soil water availability, is arguably the most important driver of the density and diversity of plants found in ecosystems. Interactions between plants and water play a central role in the energy, water, and carbon cycles. To improve quantitative models that forecast critical earth system functions such as water availability and agricultural productivity, we study how rainfall variability at daily, seasonal, and inter-annual scales impacts ecosystem structure and function. Key interests include grassland productivity and seasonally-dry tropical forest structure.</p>
+        <details class="rep-pubs">
+          <summary>Representative Publications</summary>
+          <ul>
+            <li>Parolari &amp; Paschalis (2022). Precipitation variability can bias estimates of ecological controls on ecosystem productivity. <em>Ecohydrology</em>. <a href="https://onlinelibrary.wiley.com/doi/abs/10.1002/eco.2384" target="_blank">doi:10.1002/eco.2384</a></li>
+            <li>Parolari et al. (2020). Liana abundance and diversity increase with rainfall seasonality in Panama. <em>Ecography</em>. <a href="https://onlinelibrary.wiley.com/doi/full/10.1111/ecog.04678" target="_blank">doi:10.1111/ecog.04678</a></li>
+            <li>Schwantes et al. (2018). Accounting for landscape heterogeneity improves spatial predictions of tree vulnerability to drought. <em>New Phytologist</em>. <a href="https://nph.onlinelibrary.wiley.com/doi/abs/10.1111/nph.15274" target="_blank">doi:10.1111/nph.15274</a></li>
+          </ul>
+        </details>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PEOPLE -->
+<section id="people">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2>People</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <!-- PI -->
+    <div class="pi-block">
+      <img class="pi-photo" src="https://images.squarespace-cdn.com/content/v1/57bcae14d482e92729889751/1599615104898-LZFIVMU3QZAUPQYKYJPS/Anthony+Parolari+copy.jpg" alt="Anthony J. Parolari" onerror="this.style.display='none'" />
+      <div class="pi-info">
+        <h3>Anthony J. Parolari, PhD, PE</h3>
+        <p class="pi-title">Principal Investigator · Associate Professor</p>
+        <p>I am a hydrologist and civil engineer by training with research interests in the role of water in ecosystems, particularly engineered ecosystems like agriculture and green infrastructure. My research develops quantitative models that link hydrologic variability to ecosystem processes, including plant productivity and soil biogeochemistry. I also study the social-ecological feedbacks that drive human interaction with the water cycle. These models are used to advance theory and to interpret empirical data, which improves basic understanding of ecosystem dynamics that can be leveraged to solve engineering and control problems.</p>
+        <p style="margin-top:0.8rem;"><a href="mailto:anthony.parolari@marquette.edu" style="color:var(--teal);font-weight:600;">anthony.parolari@marquette.edu</a></p>
+      </div>
+    </div>
+
+    <!-- Current Students -->
+    <div class="students-section">
+      <h3>Current Students</h3>
+      <div class="students-grid">
+        <div class="student-card">
+          <img class="student-photo" src="https://images.squarespace-cdn.com/content/v1/57bcae14d482e92729889751/1599788142186-9NPGOG8YLEO2CY60976L/Image+from+iOS.jpg" alt="Colin Wilson" onerror="this.style.display='none'" />
+          <div class="student-name">Colin Wilson</div>
+          <div class="student-degree">PhD Student</div>
+        </div>
+        <div class="student-card">
+          <img class="student-photo" src="https://images.squarespace-cdn.com/content/v1/57bcae14d482e92729889751/8faaf915-2720-46a2-b4f7-00ea2dbde4b6/cd+1-105110.jpg" alt="Wasif Bin Mamoon" onerror="this.style.display='none'" />
+          <div class="student-name">Wasif Bin Mamoon</div>
+          <div class="student-degree">PhD Student</div>
+        </div>
+        <div class="student-card">
+          <img class="student-photo" src="https://images.squarespace-cdn.com/content/v1/57bcae14d482e92729889751/1564692787314-R7F9CQSGJFJIPZ3GVFK4/33012096903_8235ae3d41_o.jpg" alt="Thuy Lam" onerror="this.style.display='none'" />
+          <div class="student-name">Thuy Lam</div>
+          <div class="student-degree">PhD Student</div>
+          <div class="student-topic">Salt dynamics and hydraulic performance of green infrastructure</div>
+        </div>
+        <div class="student-card">
+          <img class="student-photo" src="https://images.squarespace-cdn.com/content/v1/57bcae14d482e92729889751/d174e4ce-3f8f-4734-b39f-0900792bf5b6/Screenshot_20200524-125235_Facebook.jpg" alt="Jefferson Ibhagui" onerror="this.style.display='none'" />
+          <div class="student-name">Jefferson Ibhagui</div>
+          <div class="student-degree">PhD Student</div>
+        </div>
+      </div>
+
+      <p style="font-size:0.95rem;color:#555;padding:1rem 1.2rem;background:var(--sand);border:1px solid var(--border);border-radius:3px;border-left:4px solid var(--accent);">
+        <strong>We are looking for talented and motivated graduate students</strong> to join our team. Information regarding the Masters and PhD programs in Civil, Construction, and Environmental Engineering at Marquette can be found at the <a href="http://bulletin.marquette.edu/grad/programs/engineering/civil/" style="color:var(--teal);">graduate bulletin</a>. Please <a href="mailto:anthony.parolari@marquette.edu" style="color:var(--teal);">contact us</a> directly with questions or interest.
+      </p>
+    </div>
+
+    <!-- Alumni -->
+    <div class="alumni-section">
+      <h3>Alumni</h3>
+      <table class="alumni-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Degree</th>
+            <th>Year</th>
+            <th>Placement</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Kun Zhang</td><td>Postdoc</td><td>—</td><td>University of Minnesota Duluth</td></tr>
+          <tr><td>Isabelle Horvath</td><td>MS / PhD</td><td>2020 / 2023</td><td>EPA</td></tr>
+          <tr><td>Caitlin Lulay</td><td>MS</td><td>2022</td><td>LimnoTech</td></tr>
+          <tr><td>Laine Pulvermacher</td><td>MS</td><td>2020</td><td>HNTB</td></tr>
+          <tr><td>Sazzad Sharior</td><td>MS</td><td>2019</td><td>PhD student, UT Austin</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- TEACHING -->
+<section id="teaching">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2>Teaching</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <p style="margin-bottom:1.5rem;color:#555;">I teach courses in engineering computing, hydraulic engineering, urban hydrology and stormwater management, environmental modeling, and ecohydrology.</p>
+
+    <p class="teaching-term">Fall 2023</p>
+    <div class="course-list" style="margin-bottom:1.5rem;">
+      <div class="course-item">
+        <span class="course-code">CEEN 4230/5230</span>
+        <span class="course-name">Urban Hydrology &amp; Stormwater Management</span>
+      </div>
+    </div>
+
+    <p class="teaching-term">Spring 2024</p>
+    <div class="course-list" style="margin-bottom:2rem;">
+      <div class="course-item">
+        <span class="course-code">CEEN 1210</span>
+        <span class="course-name">Introduction to Computing, Analysis, Design, and Communication</span>
+      </div>
+    </div>
+
+    <p class="teaching-term">Previous Courses</p>
+    <div class="course-list">
+      <div class="course-item">
+        <span class="course-code">CEEN 3210</span>
+        <span class="course-name">Hydraulic Engineering</span>
+      </div>
+      <div class="course-item">
+        <span class="course-code">CEEN 4560/5560</span>
+        <span class="course-name">Environmental Fate &amp; Transport</span>
+      </div>
+      <div class="course-item">
+        <span class="course-code">CEEN 6350</span>
+        <span class="course-name">Modeling in Water Resources Engineering</span>
+      </div>
+      <div class="course-item">
+        <span class="course-code">CEEN 6932</span>
+        <span class="course-name">Ecohydrology</span>
+      </div>
+      <div class="course-item">
+        <span class="course-code">—</span>
+        <span class="course-name">Optimal Environmental Sensing</span>
+      </div>
+      <div class="course-item">
+        <span class="course-code">—</span>
+        <span class="course-name">Duke Research Integration Voyage for Engineers</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2>Publications</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <a class="google-scholar-link" href="https://scholar.google.com/citations?user=3nn7V1gAAAAJ&hl=en" target="_blank">
+      ↗ Full list on Google Scholar
+    </a>
+
+    <ol class="pub-list">
+      <li class="pub-item">Zhang, K., Luhar, M., Brunner, M. I., &amp; Parolari, A. J. (2023). Streamflow Prediction in Poorly Gauged Watersheds in the United States Through Data-Driven Sparse Sensing. <em>Water Resources Research</em>, 59(4), e2022WR034092. <a href="https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2022WR034092" target="_blank">doi:10.1029/2022WR034092</a></li>
+      <li class="pub-item">Zhang, K., Sebo, S., McDonald, W., Bhaskar, A., Shuster, W., Stewart, R. D., &amp; Parolari, A. J. (2023). The Role of Inflow and Infiltration (I/I) in Urban Water Balances and Streamflow Regimes. <em>Water Resources Research</em>, 59(4), e2022WR032529. <a href="https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2022WR032529" target="_blank">doi:10.1029/2022WR032529</a></li>
+      <li class="pub-item">Horvath, I. R., Zhang, K., Mayer, B. K., &amp; Parolari, A. J. (2023). Effects of Regional Climate and BMP Type on Stormwater Nutrient Concentrations in BMPs: A Meta-Analysis. <em>Environmental Science &amp; Technology</em>, 57(12), 5079–5088. <a href="https://pubs.acs.org/doi/abs/10.1021/acs.est.2c05942" target="_blank">doi:10.1021/acs.est.2c05942</a></li>
+      <li class="pub-item">Zhang, K., Bin Mamoon, W., Schwartz, E., &amp; Parolari, A. J. (2023). Reconstruction of Sparse Stream Flow and Concentration Time-Series Through Compressed Sensing. <em>Geophysical Research Letters</em>, 50(2), e2022GL101177. <a href="https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2022GL101177" target="_blank">doi:10.1029/2022GL101177</a></li>
+      <li class="pub-item">Horvath, I. R., Parolari, A. J., Petrella, S., Stow, C. A., Godwin, C. M., &amp; Maguire, T. J. (2022). Volunteer science data show degraded water quality disproportionately burdens areas of high poverty. <em>Journal of Hydrology</em>, 613, 128475. <a href="https://www.sciencedirect.com/science/article/pii/S0022169422010459" target="_blank">doi:10.1016/j.jhydrol.2022.128475</a></li>
+      <li class="pub-item">Zhang, K., &amp; Parolari, A. J. (2022). Impact of stormwater infiltration on rainfall-derived inflow and infiltration: A physically based surface–subsurface urban hydrologic model. <em>Journal of Hydrology</em>, 610, 127938. <a href="https://www.sciencedirect.com/science/article/abs/pii/S0022169422005133" target="_blank">doi:10.1016/j.jhydrol.2022.127938</a></li>
+      <li class="pub-item">Parolari, A. J., &amp; Paschalis, A. (2022). Precipitation variability can bias estimates of ecological controls on ecosystem productivity response to precipitation change. <em>Ecohydrology</em>, 15(5), e2384. <a href="https://onlinelibrary.wiley.com/doi/abs/10.1002/eco.2384" target="_blank">doi:10.1002/eco.2384</a></li>
+      <li class="pub-item">Horvath, I. R., Pulvermacher, L., &amp; Parolari, A. J. (2022). Seasonal Hydroclimatic and Soil Biogeochemical Drivers of N and P Availability in a Constructed Stormwater Wetland. <em>Journal of Sustainable Water in the Built Environment</em>, 8(1), 04021018. <a href="https://ascelibrary.org/doi/abs/10.1061/JSWBAY.0000962" target="_blank">doi:10.1061/JSWBAY.0000962</a></li>
+      <li class="pub-item">Naughton, J., Sharior, S., Parolari, A., Strifling, D., &amp; McDonald, W. (2021). Barriers to real-time control of stormwater systems. <em>Journal of Sustainable Water in the Built Environment</em>, 7(4), 04021016. <a href="https://ascelibrary.org/doi/abs/10.1061/JSWBAY.0000961" target="_blank">doi:10.1061/JSWBAY.0000961</a></li>
+      <li class="pub-item">Marani, M., Katul, G. G., Pan, W. K., &amp; Parolari, A. J. (2021). Intensity and frequency of extreme novel epidemics. <em>PNAS</em>, 118(35), e2105482118. <a href="https://www.pnas.org/doi/abs/10.1073/pnas.2105482118" target="_blank">doi:10.1073/pnas.2105482118</a></li>
+      <li class="pub-item">Katul, G. G., Mrad, A., Bonetti, S., Manoli, G., &amp; Parolari, A. J. (2020). Global convergence of COVID-19 basic reproduction number and estimation from early-time SIR dynamics. <em>PLoS One</em>, 15(9), e0239800. <a href="https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0239800" target="_blank">doi:10.1371/journal.pone.0239800</a></li>
+      <li class="pub-item">Parolari, A. J., K. Paul, A. Griffing, R. Condit, R. Perez, S. Aguilar, and S. Schnitzer (2020). Liana abundance and diversity increase with rainfall seasonality along a precipitation gradient in Panama. <em>Ecography</em>, 43(1), 25–33. <a href="https://onlinelibrary.wiley.com/doi/full/10.1111/ecog.04678" target="_blank">doi:10.1111/ecog.04678</a></li>
+      <li class="pub-item">Parolari, A. J. and G. Manoli (2019). Power law growth and delayed feedbacks in socio-hydrological systems. <em>Earth's Future</em>, 7(11), 1220–1231. <a href="https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2019EF001185" target="_blank">doi:10.1029/2019EF001185</a></li>
+      <li class="pub-item">Stewart, R. D., A. S. Bhaskar, A. J. Parolari, et al. (2019). An analytical approach to ascertain saturation-excess versus infiltration-excess overland flow in urban and reference landscapes. <em>Hydrological Processes</em>. <a href="https://onlinelibrary.wiley.com/doi/full/10.1002/hyp.13562" target="_blank">doi:10.1002/hyp.13562</a></li>
+      <li class="pub-item">Sharior, S., W. McDonald, and A. J. Parolari (2019). Improved reliability of stormwater detention basin performance through water quality data-informed real-time control. <em>Journal of Hydrology</em>, 573, 422–431. <a href="https://www.sciencedirect.com/science/article/pii/S0022169419302598" target="_blank">doi:10.1016/j.jhydrol.2019.03.012</a></li>
+      <li class="pub-item">Parolari, A. J., Pelrine, S., &amp; Bartlett, M. S. (2018). Stochastic water balance dynamics of passive and controlled stormwater basins. <em>Advances in Water Resources</em>, 122, 328–339. <a href="https://www.sciencedirect.com/science/article/pii/S0309170818302859" target="_blank">doi:10.1016/j.advwatres.2018.10.016</a></li>
+      <li class="pub-item">Schwantes, A. M., Parolari, A. J., et al. (2018). Accounting for landscape heterogeneity improves spatial predictions of tree vulnerability to drought. <em>New Phytologist</em>, 220(1), 132–146. <a href="https://nph.onlinelibrary.wiley.com/doi/abs/10.1111/nph.15274" target="_blank">doi:10.1111/nph.15274</a></li>
+      <li class="pub-item">Calabrese, S., A. J. Parolari, and A. Porporato (2017). Hydrologic transport of dissolved inorganic carbon and its control on chemical weathering. <em>J. Geophysical Research – Earth Surface</em>. <a href="http://onlinelibrary.wiley.com/doi/10.1002/2017JF004346/full" target="_blank">doi:10.1002/2017JF004346</a></li>
+      <li class="pub-item">Liu, Y., A. J. Parolari, M. Kumar, C. W. Huang, G. G. Katul, and A. Porporato (2017). Increasing atmospheric humidity and CO2 concentration alleviate forest mortality risk. <em>PNAS</em>. <a href="http://www.pnas.org/content/early/2017/08/22/1704811114.full" target="_blank">doi:10.1073/pnas.1704811114</a></li>
+      <li class="pub-item">Parolari, A. J., M. L. Mobley, A. R. Bacon, G. G. Katul, D. deB. Richter, and A. Porporato (2017). Boom and bust carbon-nitrogen dynamics during reforestation. <em>Ecological Modelling</em>, 360, 108–119. <a href="http://www.sciencedirect.com/science/article/pii/S0304380017303320" target="_blank">doi:10.1016/j.ecolmodel.2017.06.023</a></li>
+      <li class="pub-item">Bartlett, M. S., A. J. Parolari, J. J. McDonnell, and A. Porporato (2016). Framework for event-based semi-distributed modeling that unifies the SCS-CN method, VIC, PDM, and TOPMODEL. <em>Water Resources Research</em>, 52(9), 7036–7052. <a href="http://onlinelibrary.wiley.com/doi/10.1002/2016WR019084/full" target="_blank">doi:10.1002/2016WR19084</a></li>
+      <li class="pub-item">Bartlett, M. S., A. J. Parolari, J. J. McDonnell, and A. Porporato (2016). Beyond the SCS-CN method: A theoretical framework for spatially lumped rainfall-runoff response. <em>Water Resources Research</em>, 52(6), 4608–4627. <a href="http://onlinelibrary.wiley.com/doi/10.1002/2015WR018439/full" target="_blank">doi:10.1002/2015WR018439</a></li>
+      <li class="pub-item">Parolari, A. J. and A. Porporato (2016). Forest soil carbon and nitrogen cycles under biomass harvest: stability, transient response, and feedback. <em>Ecological Modelling</em>, 329, 64–76. <a href="http://www.sciencedirect.com/science/article/pii/S030438001630062X" target="_blank">doi:10.1016/j.ecolmodel.2016.03.003</a></li>
+      <li class="pub-item">Pelak, N. F., A. J. Parolari, and A. Porporato (2016). Bistable plant-soil dynamics and biogenic controls on the soil production function. <em>Earth Surface Processes and Landforms</em>. <a href="http://onlinelibrary.wiley.com/doi/10.1002/esp.3878/abstract" target="_blank">doi:10.1002/esp.3878</a></li>
+      <li class="pub-item">Bartlett, M. S., E. Daly, J. J. McDonnell, A. J. Parolari, and A. Porporato (2015). Stochastic rainfall-runoff model with explicit soil moisture dynamics. <em>Proceedings of the Royal Society A</em>, 471, 20150389. <a href="http://rspa.royalsocietypublishing.org/content/471/2183/20150389" target="_blank">doi:10.1098/rspa.2015.0389</a></li>
+      <li class="pub-item">Porporato, A., X. Feng, S. Manzoni, Y. Mau, A. J. Parolari, and G. Vico (2015). Ecohydrological modeling in agroecosystems: examples and challenges. <em>Water Resources Research</em>, 51(7), 5081–5099. <a href="http://onlinelibrary.wiley.com/doi/10.1002/2015WR017289/full" target="_blank">doi:10.1002/2015WR017289</a></li>
+      <li class="pub-item">Parolari, A. J., G. G. Katul, and A. Porporato (2015). The Doomsday Equation and 50 years beyond: new perspectives on the human-water system. <em>WIREs Water</em>, 2(4), 407–414. <a href="http://onlinelibrary.wiley.com/doi/10.1002/wat2.1080/abstract" target="_blank">doi:10.1002/wat2.1080</a></li>
+      <li class="pub-item">Parolari, A. J., M. L. Goulden, and R. L. Bras (2015). Ecohydrological controls on grass and shrub above-ground net primary productivity in a seasonally dry climate. <em>Ecohydrology</em>, 8(8), 1572–1583. <a href="http://onlinelibrary.wiley.com/doi/10.1002/eco.1605/abstract" target="_blank">doi:10.1002/eco.1605</a></li>
+      <li class="pub-item">Parolari, A. J., G. G. Katul, and A. Porporato (2014). An ecohydrological perspective on drought-induced forest mortality. <em>Journal of Geophysical Research Biogeosciences</em>, 119, 1–17. <a href="http://dx.doi.org/10.1002/2013JG002592" target="_blank">doi:10.1002/2013JG002592</a></li>
+      <li class="pub-item">Parolari, A. J., M. L. Goulden, and R. L. Bras (2012). Fertilization effects on the ecohydrology of a southern California annual grassland. <em>Geophysical Research Letters</em>, 39, L08405. <a href="http://dx.doi.org/10.1029/2012GL051411" target="_blank">doi:10.1029/2012GL051411</a></li>
+      <li class="pub-item">Parolari, Anthony. <em>The nitrogen cycle and ecohydrology of seasonally dry grasslands.</em> PhD Thesis, Massachusetts Institute of Technology, 2012.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Parolari Ecohydrology Lab · Department of Civil, Construction &amp; Environmental Engineering · Marquette University</p>
+  <p style="margin-top:0.5rem;"><a href="mailto:anthony.parolari@marquette.edu">anthony.parolari@marquette.edu</a></p>
+</footer>
+
+</body>
+</html>
